@@ -1,0 +1,4 @@
+root - INFO - 4, 5
+root - INFO - SUCCESS: it looks likes the values are ints
+root - INFO - no, way
+root - ERROR - It appears the a and b are not ints
