@@ -1,4 +1,4 @@
-Key Points
+## Key Points
 
 - catching error: https://docs.python.org/3/tutorial/errors.html
 - testing:
@@ -14,7 +14,7 @@ Key Points
     + https://medium.com/@karijdempsey/test-driven-development-is-essential-for-good-data-science-heres-why-db7975a03a44
     + https://docs.python-guide.org/writing/tests/
 
-Key Terms
+## Key Terms
 
 - Try-except blocks - are used to check code for errors. Try will execute if no errors occur.
 - Testing - checking that the outcome of your software matches the expected requirements

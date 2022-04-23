@@ -1,11 +1,11 @@
-Key Commands
+## Key Commands
 
 - course: https://www.udacity.com/course/version-control-with-git--ud123
 - https://nvie.com/posts/a-successful-git-branching-model/
 - https://blog.algorithmia.com/how-to-version-control-your-production-machine-learning-models/
 - https://towardsdatascience.com/version-control-ml-model-4adb2db5f87c
 
-Git
+## Git
 
 - git add - add any new or modified files to the index
 - git commit -m - a new commit containing the current contents of the index and the given log message describing the changes
@@ -18,7 +18,7 @@ Git
 - git branch -d deletes local branch
 -> git merge --no-ff friends_groups
 
-Code reviews
+## Code reviews
 
 - https://github.com/lyst/MakingLyst/tree/master/code-reviews
 - https://www.kevinlondon.com/2015/05/05/code-review-best-practices

@@ -1,4 +1,4 @@
-Key Points
+## Key Points
 
 - pep8: https://peps.python.org/pep-0008/#code-lay-out
 - set is faster than list: https://stackoverflow.com/questions/8929284/what-makes-sets-faster-than-lists/8929445#8929445
@@ -11,7 +11,7 @@ Key Points
     + https://github.com/scikit-learn/scikit-learn
     + https://github.com/jjrunner/stackoverflow
 
-Key Terms
+## Key Terms
 
 - Refactoring - the process of writing code that improves its maintainability, speed, and readability without changing its functionality.
 - Modular - the logical partition of software into smaller programs for the purpose of improved maintainability, speed, and readability.
@@ -21,7 +21,7 @@ Documentation - written material or illustration that explains computer software
 - Linting - the automated checking of your source code for programmatic, syntactic, or stylistic errors. [Source]
 - PEP8 - a document providing guidelines and best practices for writing Python code.
 
-Two ways to automate clean code are with
+## Two ways to automate clean code are with
 
 - pylint
 - autopep8
