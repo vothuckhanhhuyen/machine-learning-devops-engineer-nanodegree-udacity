@@ -1,0 +1,3 @@
+# Clean Code Principles
+
+- Develop skills that are essential for deploying production machine learning models. First, you will put your coding best practices on auto-pilot by learning how to use PyLint and AutoPEP8. Then you will further expand your git and Github skills to work with teams. Finally, you will learn best practices associated with testing and logging used in production settings in order to ensure your models can stand the test of time.
