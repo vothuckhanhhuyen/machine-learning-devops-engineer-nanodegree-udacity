@@ -1,0 +1,11 @@
+2022-04-30 16:54:09,542: root - INFO - Raw dataframe fixture creation: SUCCESS
+2022-04-30 16:54:09,543: root - INFO - Testing import_data: SUCCESS
+2022-04-30 16:54:11,401: root - INFO - Testing perform_eda: SUCCESS
+2022-04-30 16:54:11,401: root - INFO - Testing perform_eda: SUCCESS
+2022-04-30 16:54:11,401: root - INFO - Testing perform_eda: SUCCESS
+2022-04-30 16:54:11,401: root - INFO - Testing perform_eda: SUCCESS
+2022-04-30 16:54:11,401: root - INFO - Testing perform_eda: SUCCESS
+2022-04-30 16:54:12,349: root - INFO - Encoded dataframe fixture creation: SUCCESS
+2022-04-30 16:54:12,350: root - INFO - Testing encoder_helper: SUCCESS
+2022-04-30 16:54:12,374: root - INFO - Dataframe feature engineering fixture creation: SUCCESS
+2022-04-30 16:54:12,375: root - INFO - Testing feature_engineering: SUCCESS

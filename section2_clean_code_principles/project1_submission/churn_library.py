@@ -23,7 +23,9 @@ sns.set()
 os.environ["QT_QPA_PLATFORM"] = "offscreen"
 
 logging.basicConfig(
+    filename="logs/churn_library.log",
     level=logging.INFO,
+    filemode="w",
     format="%(asctime)-15s %(message)s")
 logger = logging.getLogger()
 
@@ -175,7 +177,7 @@ def classification_report_image(y_train, y_test, y_train_preds_lr, \
             y_test_preds_lr)}
 
     for title, classification_data in classification_reports_data.items():
-        plt.rc("figure", figsize=(5, 5))
+        plt.figure("figure", figsize=(5, 5))
 
         plt.text(0.01, 1.25, str(classification_data[0]), {
                  "fontsize": 10}, fontproperties="monospace")

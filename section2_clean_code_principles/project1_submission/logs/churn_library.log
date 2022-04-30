@@ -1,0 +1,5 @@
+2022-04-30 16:49:17,188 Import data
+2022-04-30 16:49:17,232 Perform EDA
+2022-04-30 16:49:19,609 Encode categorical columns
+2022-04-30 16:49:20,977 Perform Feature Engineering and Split Train & Test data
+2022-04-30 16:49:21,006 Train and store model and results
