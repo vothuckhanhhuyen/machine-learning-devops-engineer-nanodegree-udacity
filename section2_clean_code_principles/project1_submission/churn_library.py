@@ -3,7 +3,7 @@ This is the churn_library.py procedure.
 Artifact produced will be in images and models folders.
 
 Author: HuyenVTK1
-Date: April 29, 2022
+Date: April 30, 2022
 """
 
 import os
@@ -20,7 +20,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 sns.set()
 
-os.environ['QT_QPA_PLATFORM'] = 'offscreen'
+os.environ["QT_QPA_PLATFORM"] = "offscreen"
 
 logging.basicConfig(
     level=logging.INFO,
@@ -58,7 +58,7 @@ def perform_eda(df):
                        "Marital_Status", "Total_Trans_Ct", "Heatmap"]
     for column_name in column_name_lst:
         plt.figure(figsize=(20, 10))
-        if column_name == "Churn" or column_name == "Customer_Age":
+        if column_name in ("Churn", "Customer_Age"):
             df[column_name].hist()
         elif column_name == "Marital_Status":
             df[column_name].value_counts('normalize').plot(kind='bar')
@@ -78,7 +78,8 @@ def encoder_helper(df, category_lst, response):
     input:
             df: pandas dataframe
             category_lst: list of columns that contain categorical features
-            response: string of response name [optional argument that could be used for naming variables or index y column]
+            response: string of response name [optional argument that \
+                could be used for naming variables or index y column]
 
     output:
             df: pandas dataframe with new columns for
@@ -100,15 +101,16 @@ def perform_feature_engineering(df, response):
     '''
     input:
               df: pandas dataframe
-              response: string of response name [optional argument that could be used for naming variables or index y column]
+              response: string of response name [optional argument that \
+                  could be used for naming variables or index y column]
 
     output:
-              X_train: X training data
-              X_test: X testing data
+              x_train: x training data
+              x_test: x testing data
               y_train: y training data
               y_test: y testing data
     '''
-    X = pd.DataFrame()
+    x = pd.DataFrame()
     y = df[response]
 
     keep_cols = [
@@ -132,20 +134,16 @@ def perform_feature_engineering(df, response):
         "Income_Category_Churn",
         "Card_Category_Churn"]
 
-    X[keep_cols] = df[keep_cols]
+    x[keep_cols] = df[keep_cols]
 
-    X_train, X_test, y_train, y_test = train_test_split(
-        X, y, test_size=0.3, random_state=42)
+    x_train, x_test, y_train, y_test = train_test_split(
+        x, y, test_size=0.3, random_state=42)
 
-    return X_train, X_test, y_train, y_test
+    return x_train, x_test, y_train, y_test
 
 
-def classification_report_image(y_train,
-                                y_test,
-                                y_train_preds_lr,
-                                y_train_preds_rf,
-                                y_test_preds_lr,
-                                y_test_preds_rf):
+def classification_report_image(y_train, y_test, y_train_preds_lr, \
+                                y_train_preds_rf, y_test_preds_lr, y_test_preds_rf):
     '''
     produces classification report for training and testing results and stores report as image
     in images folder
@@ -198,12 +196,12 @@ def classification_report_image(y_train,
         plt.close()
 
 
-def feature_importance_plot(model, X_data, output_pth):
+def feature_importance_plot(model, x_data, output_pth):
     '''
     creates and stores the feature importances in pth
     input:
             model: model object containing feature_importances_
-            X_data: pandas dataframe of X values
+            x_data: pandas dataframe of X values
             output_pth: path to store the figure
 
     output:
@@ -211,23 +209,23 @@ def feature_importance_plot(model, X_data, output_pth):
     '''
     importances = model.best_estimator_.feature_importances_
     indices = np.argsort(importances)[::-1]
-    names = [X_data.columns[i] for i in indices]
+    names = [x_data.columns[i] for i in indices]
 
     plt.figure(figsize=(20, 5))
     plt.title("Feature Importance")
     plt.ylabel('Importance')
-    plt.bar(range(X_data.shape[1]), importances[indices])
-    plt.xticks(range(X_data.shape[1]), names, rotation=90)
+    plt.bar(range(x_data.shape[1]), importances[indices])
+    plt.xticks(range(x_data.shape[1]), names, rotation=90)
     plt.savefig("images/%s/Feature_Importance.jpg" % output_pth)
     plt.close()
 
 
-def train_models(X_train, X_test, y_train, y_test):
+def train_models(x_train, x_test, y_train, y_test):
     '''
     train, store model results: images + scores, and store models
     input:
-              X_train: X training data
-              X_test: X testing data
+              x_train: x training data
+              x_test: x testing data
               y_train: y training data
               y_test: y testing data
     output:
@@ -244,24 +242,24 @@ def train_models(X_train, X_test, y_train, y_test):
     }
 
     cv_rfc = GridSearchCV(estimator=rfc, param_grid=param_grid, cv=5)
-    cv_rfc.fit(X_train, y_train)
+    cv_rfc.fit(x_train, y_train)
 
-    lrc.fit(X_train, y_train)
+    lrc.fit(x_train, y_train)
 
-    y_train_preds_rf = cv_rfc.best_estimator_.predict(X_train)
-    y_test_preds_rf = cv_rfc.best_estimator_.predict(X_test)
+    y_train_preds_rf = cv_rfc.best_estimator_.predict(x_train)
+    y_test_preds_rf = cv_rfc.best_estimator_.predict(x_test)
 
-    y_train_preds_lr = lrc.predict(X_train)
-    y_test_preds_lr = lrc.predict(X_test)
+    y_train_preds_lr = lrc.predict(x_train)
+    y_test_preds_lr = lrc.predict(x_test)
 
     # store ROC curves plot
-    lrc_plot = plot_roc_curve(lrc, X_test, y_test)
+    lrc_plot = plot_roc_curve(lrc, x_test, y_test)
     plt.figure(figsize=(15, 8))
     axis = plt.gca()
     _ = plot_roc_curve(cv_rfc.best_estimator_,
-                       X_test, y_test, ax=axis, alpha=0.8)
+                       x_test, y_test, ax=axis, alpha=0.8)
     lrc_plot.plot(ax=axis, alpha=0.8)
-    plt.savefig("images/results/Roc_Curves.png")
+    plt.savefig("images/results/Roc_Curves.jpg")
     plt.close()
 
     # store classification report image
@@ -273,7 +271,7 @@ def train_models(X_train, X_test, y_train, y_test):
                                 y_test_preds_rf)
 
     # store feature importance plot
-    feature_importance_plot(cv_rfc, X_test, "results")
+    feature_importance_plot(cv_rfc, x_test, "results")
 
     # store models
     joblib.dump(cv_rfc.best_estimator_, "models/rfc_model.pkl")
@@ -289,12 +287,12 @@ if __name__ == "__main__":
 
     logger.info("Encode categorical columns")
     DF_ENCODED = encoder_helper(DF_RAW,
-                                     category_lst=["Gender",
-                                                   "Education_Level",
-                                                   "Marital_Status",
-                                                   "Income_Category",
-                                                   "Card_Category"],
-                                     response="Churn")
+                                category_lst=["Gender",
+                                              "Education_Level",
+                                              "Marital_Status",
+                                              "Income_Category",
+                                              "Card_Category"],
+                                response="Churn")
 
     logger.info("Perform Feature Engineering and Split Train & Test data")
     X_TRAIN, X_TEST, Y_TRAIN, Y_TEST = perform_feature_engineering(
