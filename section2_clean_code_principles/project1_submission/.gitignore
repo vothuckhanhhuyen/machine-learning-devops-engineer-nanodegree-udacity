@@ -1,0 +1,5 @@
+images/
+logs/
+models/
+.pytest_cache/
+__pycache__/
