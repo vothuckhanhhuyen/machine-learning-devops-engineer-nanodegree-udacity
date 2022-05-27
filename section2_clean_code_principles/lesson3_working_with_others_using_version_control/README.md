@@ -1,6 +1,6 @@
 ## Key Commands
 
-- course: https://www.udacity.com/course/version-control-with-git--ud123
+- Course: https://www.udacity.com/course/version-control-with-git--ud123
 - https://nvie.com/posts/a-successful-git-branching-model/
 - https://blog.algorithmia.com/how-to-version-control-your-production-machine-learning-models/
 - https://towardsdatascience.com/version-control-ml-model-4adb2db5f87c
