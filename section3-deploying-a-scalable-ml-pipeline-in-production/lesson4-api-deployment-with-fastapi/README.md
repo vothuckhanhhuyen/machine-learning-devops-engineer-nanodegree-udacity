@@ -23,6 +23,7 @@ app = FastAPI()
 async def say_hello():
     return {"greeting": "Hello World!"}
 ```
+
     - To run our app, we will use uvicorn in our shell: uvicorn main:app --reload. By default, our app will be available locally at http://127.0.0.1:8000. The --reload allows you to make changes to your code and have them instantly deployed without restarting uvicorn.
     - FastAPI's type checking uses a mix of standard Python type hints in function definitions as well as the package Pydantic to define data models which define the types that are expected in a request body, like the following example:
 ```
@@ -46,6 +47,7 @@ app = FastAPI()
 async def create_item(item: TaggedItem):
     return item
 ```
+
     - This little bit of code unlocks many features such as converting the body to JSON, converting and validating types as necessary, and generating automatic documentation (which we can visit by going to 127.0.0.1:8000/docs or the equivalent URL when live).
     - This little bit of code unlocks many features such as converting the body to JSON, converting and validating types as necessary, and generating automatic documentation (which we can visit by going to 127.0.0.1:8000/docs or the equivalent URL when live).
 ```
@@ -57,6 +59,7 @@ async def get_items(item_id: int, count: int = 1):
 
 # Note, parameters not declared in the path are automatically query parameters.
 ```
+
     - Path and query parameters are naturally strings since they are part of the endpoint URL. However, the type hints automatically convert the variables to their specified type. FastAPI automatically understands the distinction between path and query parameters by parsing the declaration. Note, to create optional query parameters use Optional from the typing module.
     - If we wanted to query the above API running on our local machine it would be via http://127.0.0.1:8000/items/42/?count=1.
 
@@ -90,6 +93,7 @@ git init
 git add *
 git commit -m "Initial commit."
 ```
+
     - Connect the repo to our new app: heroku git:remote --app name-of-the-app.
     - The app will launch after a few moments.
     - Enter into the Heroku VM using: heroku run bash --app name-of-the-app.

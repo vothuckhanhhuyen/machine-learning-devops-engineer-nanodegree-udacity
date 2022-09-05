@@ -56,6 +56,7 @@ jobs:
       run: |
         pytest
 ```
+
     - See the inline comments for details on the steps in this workflow.
     - Beyond CI/CD GitHub Actions can also automate actions such as greeting users when they submit their first pull request to your repository.
     - Other popular platforms for CI/CD include CircleCI, TravisCI, and Jenkins.
@@ -67,6 +68,7 @@ jobs:
 ```
 web: uvicorn main:app
 ```
+
     - This Procfile specifies a web dyno that runs the command uvicorn which is then running a web app cleverly called app that resides in main.py.
     H- eroku makes it easy to do CD. It provides multiple different deployment options with the two most common being Git and Docker based deployments. We will leverage the GitHub connection.
     - You can connect an existing repository to Heroku either using the web GUI or the CLI and from there you can enable continuous delivery so that all changes to your code automatically get deployed to your Heroku app. Furthermore, you can specify that the CD only occurs when your continuous integration (e.g. your unit tests) succeeds. Doing this tightly couples our CI and CD processes which will help us avoid deploying a broken app.
