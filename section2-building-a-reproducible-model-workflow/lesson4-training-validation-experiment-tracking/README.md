@@ -11,9 +11,9 @@
 
 - Hydra can be used to perform parameter sweeps: given a grid of parameter values, hydra will generate multiple jobs and go through the grid automatically.
     - If we want our jobs to run in parallel, we can just add the hydra/launcher=joblib specification, like:
-```
-mlflow run . -P hydra_options="hydra/launcher=joblib parameters.a=3,4 parameters.b=range(2,4,1) -m"
-```
+    ```
+    mlflow run . -P hydra_options="hydra/launcher=joblib parameters.a=3,4 parameters.b=range(2,4,1) -m"
+    ```
 
 - MLflow provides several flavors out of the box, and can natively export models from sklearn, pytorch, Keras, ONNX and also a generic python function flavor that can be used for custom things. When generating the model export we can provide two optional but important elements:
     - A signature, which contains the input and output schema for the data. This allows downstream tools to catch obvious schema problems.

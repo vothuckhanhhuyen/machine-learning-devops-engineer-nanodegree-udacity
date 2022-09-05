@@ -28,34 +28,34 @@
 - Continuous Integration with GitHub Actions
     - GitHub Actions is CI/CD built right into GitHub and comes with a plethora of pre-built workflows such as running your test suite or checking in if your code has any flake8 errors.
     - Setting up a GitHub Action is as straightforward as specifying when the action occurs, such as on push, what sort of VM it runs on, what programs and packages it installs, and then ultimately what commands get run. Here is a portion of the template workflow for Python that GitHub provides:
-```
-name: Python package # Name of the Action.
+    ```
+    name: Python package # Name of the Action.
 
-on: [push] # When this action runs.
+    on: [push] # When this action runs.
 
-jobs:
-  build:
+    jobs:
+    build:
 
-    runs-on: ubuntu-latest # Which OS this runs on, you can also build on Windows or MacOS.
-    strategy:
-      matrix:
-        python-version: [3.6, 3.7, 3.8] # You can build against multiple Python versions.
+        runs-on: ubuntu-latest # Which OS this runs on, you can also build on Windows or MacOS.
+        strategy:
+        matrix:
+            python-version: [3.6, 3.7, 3.8] # You can build against multiple Python versions.
 
-    steps:
-    - uses: actions/checkout@v2 # Calling a pre-built GitHub Action which allows your Action to access your repository.
-    - name: Set up Python ${{ matrix.python-version }} # Name of an action that sets up Python.
-      uses: actions/setup-python@v2 # A pre-built GitHub Action that sets up a Python environment.
-      with:
-        python-version: ${{ matrix.python-version }}
-    - name: Install dependencies # The first step that isn't just calling another action.
-      run: |
-        python -m pip install --upgrade pip # Upgrade pip to the latest version.
-        pip install pytest # Install pytest.
-        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi # If we have a requirements.txt, then install it.
-    - name: Test with pytest # Final action which runs pytest. If any test fails, then this Action fails.
-      run: |
-        pytest
-```
+        steps:
+        - uses: actions/checkout@v2 # Calling a pre-built GitHub Action which allows your Action to access your repository.
+        - name: Set up Python ${{ matrix.python-version }} # Name of an action that sets up Python.
+        uses: actions/setup-python@v2 # A pre-built GitHub Action that sets up a Python environment.
+        with:
+            python-version: ${{ matrix.python-version }}
+        - name: Install dependencies # The first step that isn't just calling another action.
+        run: |
+            python -m pip install --upgrade pip # Upgrade pip to the latest version.
+            pip install pytest # Install pytest.
+            if [ -f requirements.txt ]; then pip install -r requirements.txt; fi # If we have a requirements.txt, then install it.
+        - name: Test with pytest # Final action which runs pytest. If any test fails, then this Action fails.
+        run: |
+            pytest
+    ```
 
     - See the inline comments for details on the steps in this workflow.
     - Beyond CI/CD GitHub Actions can also automate actions such as greeting users when they submit their first pull request to your repository.
@@ -65,9 +65,9 @@ jobs:
     - Heroku is a cloud Platform-as-a-Service (PaaS) that supports a variety of languages and allows users to deploy apps. For our purposes, we will use Heroku to run a Python application that consists of an API for machine learning inference.
     - Heroku is built around the concept of lightweight containers called dynos that are easily scalable and adaptable to a variety of tasks. For our work, we will be using one web dyno to run our API.
     - The instructions for launching an app are contained in a Procfile that resides in the highest level of your project directory. This file declares the dyno type and the associated command on each line, e.g.:
-```
-web: uvicorn main:app
-```
+    ```
+    web: uvicorn main:app
+    ```
 
     - This Procfile specifies a web dyno that runs the command uvicorn which is then running a web app cleverly called app that resides in main.py.
     H- eroku makes it easy to do CD. It provides multiple different deployment options with the two most common being Git and Docker based deployments. We will leverage the GitHub connection.

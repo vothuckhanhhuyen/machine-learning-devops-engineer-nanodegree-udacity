@@ -16,9 +16,9 @@
 - Data Slicing Use Cases and Testing
     - Data slicing should be used in the model validation process before deploying a model. Just as you would verify overall performance, you should verify performance on all relevant slices. What counts as "relevant" is highly dependent on the type of model/data, and the domain. For example, slicing on the specialty of medical providers in a disease predictor, or race and gender in a recidivism (repeated criminal offenses) predictor.
     - The same slices that you monitor pre-deployment should also be monitored post-deployment. Of course in post-deployment, you will not have labels to compute exact metrics, but given enough examples, one can compute the output values on a given slice like classification probability and see if it is statistically similar to the same classification probability on the training data.
-```
-pytest -v
-```
+    ```
+    pytest -v
+    ```
 
 - Model Bias
     - Commonly, a model may perform well overall but underperform on some slices. Or, insidiously, a model may perform well by every metric you throw at it but still underperform in application. There are many reasons this could happen, but one culprit that has been gaining increased awareness is data bias. This is not to be confused with the bias in "bias-variance trade-off" which is part of the model under or overfitting and model generalization.
