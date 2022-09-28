@@ -15,3 +15,6 @@ validation within a CI/CD pipeline based on updated data versioning
 - Create multi-step pipelines that automatically retrain and deploy models after data updates
 - Track model summary statistics and monitor model online performance over time to prevent 
 model-degradation
+
+## [Certificate](https://confirm.udacity.com/PHNJFP93)
+![Certificate](mlops_udacity.jpg)
